@@ -9,6 +9,9 @@ require('packer').startup(function()
     use 'feline-nvim/feline.nvim'
     use 'nathom/filetype.nvim'
     use 'neovim/nvim-lspconfig' 
-    use 'nvim-treesitter/nvim-treesitter'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 end)
 
