@@ -25,5 +25,6 @@ require('packer').startup(function()
         'tanvirtin/vgit.nvim',
         requires = {{'nvim-lua/plenary.nvim'}}
     }
+    use 'mrjones2014/smart-splits.nvim'
 end)
 
