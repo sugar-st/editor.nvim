@@ -27,5 +27,6 @@ require('packer').startup(function()
     }
     use 'mrjones2014/smart-splits.nvim'
     use 'nacro90/numb.nvim'
+    use 'haringsrob/nvim_context_vt'
 end)
 
