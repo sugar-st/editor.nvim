@@ -20,5 +20,10 @@ require('packer').startup(function()
         requires = {{'nvim-lua/plenary.nvim'}}
     }
     use 'TC72/telescope-tele-tabby.nvim'
+    -- git
+    use {
+        'tanvirtin/vgit.nvim',
+        requires = {{'nvim-lua/plenary.nvim'}}
+    }
 end)
 

@@ -15,6 +15,11 @@ vim.api.nvim_set_keymap('n', ',f', [[<cmd>lua require('telescope.builtin').find_
 vim.api.nvim_set_keymap('n', ',g', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], opts)
 vim.api.nvim_set_keymap('n', ',b', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], opts)
 vim.api.nvim_set_keymap('n', ',t', [[<cmd>lua require('plugins.telescope').tabs()<cr>]], opts)
+
+-- repo
+vim.api.nvim_set_keymap('n', 'gj', [[<cmd>:VGit hunk_down<cr>]], opts)
+vim.api.nvim_set_keymap('n', 'gk', [[<cmd>:VGit hunk_up<cr>]], opts)
+vim.api.nvim_set_keymap('n', 'gp', [[<cmd>:VGit buffer_diff_preview<cr>]], opts)
 -- copy
 vim.api.nvim_set_keymap('v', '<D-c>', [["+y]], opts)
 
