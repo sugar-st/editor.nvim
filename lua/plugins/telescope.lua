@@ -8,20 +8,20 @@ require('telescope').setup {
     pickers = {
         fd = {
             theme = "dropdown",
-            previewer = false,
+            previewer = false
         },
         find_files = {
             theme = "dropdown",
-            previewer = false,
+            previewer = false
         },
         buffers = {
             theme = "dropdown",
-            previewer = false,
+            previewer = false
         }
     },
     extensions = {
         tele_tabby = {
-            use_highlighter = true,
+            use_highlighter = true
         }
     }
 }
@@ -32,9 +32,9 @@ function M.tabs()
         winblend = 10,
         border = true,
         previewer = false,
-        shorten_path = false,
-        --heigth=20,
-        --width= 120
+        shorten_path = false
+        -- heigth=20,
+        -- width= 120
     }
     require'telescope'.extensions.tele_tabby.list(opts)
 end
