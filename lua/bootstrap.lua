@@ -26,5 +26,6 @@ require('packer').startup(function()
         requires = {{'nvim-lua/plenary.nvim'}}
     }
     use 'mrjones2014/smart-splits.nvim'
+    use 'nacro90/numb.nvim'
 end)
 
