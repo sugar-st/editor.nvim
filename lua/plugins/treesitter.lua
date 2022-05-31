@@ -5,3 +5,4 @@ require'nvim-treesitter.configs'.setup {
         use_languagetree = true
     }
 }
+-- TODO: lua print(require('nvim-treesitter'):statusline{})   
