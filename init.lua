@@ -43,12 +43,12 @@ vim.api.nvim_set_keymap('n', '<C-w>', [[<cmd>:wq<cr>]], opts) -- buffer wipeout
 vim.api.nvim_set_keymap('n', '<C-s>', [[<cmd>:w<cr>]], opts) -- buffer save
 vim.api.nvim_set_keymap('n', '<C-q>', [[<cmd>:q<cr>]], opts) -- buffer quit
 vim.api.nvim_set_keymap('n', '<C-r>', [[<cmd>:q!<cr>]], opts) -- buffer remove
-vim.api.nvim_set_keymap('n', '<C-d>', [[<cmd>:qa<cr>]], opts) -- quit vim
+vim.api.nvim_set_keymap('n', '<C-a>', [[<cmd>:qa<cr>]], opts) -- quit vim
 
 -- copy
 vim.api.nvim_set_keymap('v', '<D-c>', [["+y]], opts)
 
 -- others
-vim.api.nvim_set_keymap('n', '<C-u>', [[<cmd>:PackerSync<cr>]], opts)
+vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>:PackerSync<cr>]], opts)
 
 require 'plugins'
