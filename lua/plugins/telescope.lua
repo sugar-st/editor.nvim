@@ -3,19 +3,19 @@ M = {}
 require('telescope').load_extension('tele_tabby')
 require('telescope').setup {
     defaults = {
-        prompt_prefix = " 🔍 "
+        prompt_prefix = ' 🔍 '
     },
     pickers = {
         fd = {
-            theme = "dropdown",
+            theme = 'dropdown',
             previewer = false
         },
         find_files = {
-            theme = "dropdown",
+            theme = 'dropdown',
             previewer = false
         },
         buffers = {
-            theme = "dropdown",
+            theme = 'dropdown',
             previewer = false
         }
     },
