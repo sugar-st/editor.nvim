@@ -1,6 +1,27 @@
 local tools = require 'tools'
 local colors = tools.colors
 
+-- vertical_bar	'┃'
+-- vertical_bar_thin	'│'
+-- left	''
+-- right	''
+-- block	'█'
+-- left_filled	''
+-- right_filled	''
+-- slant_left	''
+-- slant_left_thin	''
+-- slant_right	''
+-- slant_right_thin	''
+-- slant_left_2	''
+-- slant_left_2_thin	''
+-- slant_right_2	''
+-- slant_right_2_thin	''
+-- left_rounded	''
+-- left_rounded_thin	''
+-- right_rounded	''
+-- right_rounded_thin	''
+-- circle	'●'
+
 local mode_alias = {
     ['n'] = 'NORMAL',
     ['no'] = 'OP',
@@ -85,6 +106,10 @@ local providers = {
     git_add = function(_, _) return tools.get_git_add_status() end,
     git_mod = function(_, _) return tools.get_git_mod_status() end,
     git_del = function(_, _) return tools.get_git_del_status() end,
+    current_func = function(_, _)
+        local res = require('nvim-treesitter').statusline()
+        return res
+    end,
 }
 
 local comps = {
@@ -113,6 +138,11 @@ local comps = {
         -- end,
         left_sep = left_sep,
     },
+    current_func = {
+        provider = providers.current_func,
+        hl = hl_follow_mode,
+        right_sep = right_sep
+    },
     git_branch = {
         provider = providers.git_branch,
         hl = hl_follow_mode,
@@ -122,20 +152,33 @@ local comps = {
     },
     git_add = {
         provider = providers.git_add,
-        hl = { fg = colors.green },
-        icon = '+',
+        hl = { 
+            fg = colors.black,
+            bg = colors.git_status.added,
+        },
+        right_sep = {
+            str = '',
+            hl = {
+                fg = colors.git_status.changed,
+                bg = colors.git_status.added
+            }
+        },
     },
     git_change = {
         provider = providers.git_mod,
-        hl = { fg = colors.blue },
-        icon = '*',
-        left_sep = left_sep,
+        hl = { 
+            fg = colors.black,
+            bg = colors.git_status.changed,
+        },
+        right_sep = 'left_filled',
     },
     git_delete = {
         provider = providers.git_del,
-        hl = { fg = colors.red },
-        icon = '-',
-        left_sep = left_sep,
+        hl = { 
+            fg = colors.black,
+            bg = colors.git_status.removed,
+        },
+        right_sep = 'left_filled',
     },
     encoding = {
         provider = 'file_encoding',
@@ -171,6 +214,7 @@ require('feline').setup {
                 comps.file_info,
             }, {
                 -- lsp info
+                comps.current_func
             }, {
                 comps.git_branch, comps.git_add, comps.git_change, comps.git_delete,
                 comps.encoding, comps.progress
