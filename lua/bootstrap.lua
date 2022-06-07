@@ -8,7 +8,6 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'feline-nvim/feline.nvim'
-    use 'nathom/filetype.nvim'
     use 'neovim/nvim-lspconfig'
     use {
         'nvim-treesitter/nvim-treesitter',
