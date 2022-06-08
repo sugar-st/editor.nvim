@@ -1,6 +1,6 @@
 require 'plugins.feline'
-require 'plugins.lspconfig'
 require 'plugins.lsp-installer'
+require 'plugins.lspconfig'
 require 'plugins.treesitter'
 require 'plugins.telescope'
 require 'plugins.vgit'

@@ -10,6 +10,7 @@ require('packer').startup(function()
     use 'feline-nvim/feline.nvim'
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
+    use 'folke/lua-dev.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
