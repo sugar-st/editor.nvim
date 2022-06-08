@@ -9,6 +9,7 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'feline-nvim/feline.nvim'
     use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -27,6 +28,14 @@ require('packer').startup(function()
     use 'mrjones2014/smart-splits.nvim'
     use 'nacro90/numb.nvim'
     use 'haringsrob/nvim_context_vt'
+    -- completion
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/nvim-cmp'
+    use 'SirVer/ultisnips'
+    use 'quangnguyen30192/cmp-nvim-ultisnips'
     -- theme
     use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
