@@ -26,6 +26,8 @@ vim.api.nvim_set_keymap('n', ',t', [[<cmd>lua require('plugins.telescope').tabs(
 vim.api.nvim_set_keymap('n', 'gj', [[<cmd>:VGit hunk_down<cr>]], opts)
 vim.api.nvim_set_keymap('n', 'gk', [[<cmd>:VGit hunk_up<cr>]], opts)
 vim.api.nvim_set_keymap('n', 'gp', [[<cmd>:VGit buffer_diff_preview<cr>]], opts)
+vim.api.nvim_set_keymap('n', 'gb', [[<cmd>:Telescope git_branches<cr>]], opts)
+
 
 -- window & buffer management
 -- windows & linux
@@ -48,11 +50,7 @@ vim.api.nvim_set_keymap('n', '<C-j>', [[<cmd>lua require('smart-splits').move_cu
 vim.api.nvim_set_keymap('n', '<C-k>', [[<cmd>lua require('smart-splits').move_cursor_up(true)<cr>]], opts)
 vim.api.nvim_set_keymap('n', '<C-l>', [[<cmd>lua require('smart-splits').move_cursor_right(true)<cr>]], opts)
 
-vim.api.nvim_set_keymap('n', '<C-w>', [[<cmd>:wq<cr>]], opts) -- buffer wipeout
-vim.api.nvim_set_keymap('n', '<C-s>', [[<cmd>:w<cr>]], opts) -- buffer save
-vim.api.nvim_set_keymap('n', '<C-q>', [[<cmd>:q<cr>]], opts) -- buffer quit
-vim.api.nvim_set_keymap('n', '<C-r>', [[<cmd>:q!<cr>]], opts) -- buffer remove
-vim.api.nvim_set_keymap('n', '<C-a>', [[<cmd>:qa<cr>]], opts) -- quit vim
+vim.api.nvim_set_keymap('n', '<C-t>', [[<cmd>:tabnew<cr>]], opts) -- new tab
 
 -- copy
 vim.api.nvim_set_keymap('v', '<C-c>', [["+y]], opts)
