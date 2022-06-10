@@ -1,11 +1,12 @@
+local lspconfig = require("lspconfig")
+
+-- lua
 local luadev = require("lua-dev").setup {
     -- add any options here, or leave empty to use the default settings
     -- lspconfig = {
     --   cmd = {"lua-language-server"}
     -- },
 }
-local lspconfig = require("lspconfig")
-
 lspconfig.sumneko_lua.setup(luadev)
 -- lspconfig.sumneko_lua.setup {
 --     settings = {
@@ -29,3 +30,7 @@ lspconfig.sumneko_lua.setup(luadev)
 --         }
 --     }
 -- }
+
+-- golang
+lspconfig.golangci_lint_ls.setup{}
+lspconfig.gopls.setup{}
