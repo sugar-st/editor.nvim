@@ -37,6 +37,7 @@ require('packer').startup(function()
     use 'hrsh7th/nvim-cmp'
     use 'SirVer/ultisnips'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
+    use 'windwp/nvim-autopairs'
     -- theme
     use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
