@@ -42,5 +42,8 @@ require('packer').startup(function()
     -- theme
     use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
+    use 'RRethy/vim-illuminate'
+    use 'nvim-neo-tree/neo-tree.nvim'
+    use 'MunifTanjim/nui.nvim'
 end)
 

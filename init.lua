@@ -32,6 +32,10 @@ vim.keymap.set('n', '<space>s', telescope_builtin.lsp_document_symbols, opts)
 vim.keymap.set('n', '<space>S', telescope_builtin.lsp_workspace_symbols, opts)
 vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<space>c', vim.lsp.buf.code_action, opts)
+vim.keymap.set('n', '<space>h', vim.lsp.buf.hover, opts)
+--local illuminate = require 'illuminate'
+-- vim.keymap.set('n', '<space>j', function () illuminate.next_reference {wrap = true} end, opts)
+-- vim.keymap.set('n', '<space>k', function () illuminate.next_reference {reverse = true, wrap = true} end, opts)
 
 -- repo
 vim.api.nvim_set_keymap('n', 'gj', [[<cmd>:VGit hunk_down<cr>]], opts)

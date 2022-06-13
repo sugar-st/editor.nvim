@@ -1,7 +1,14 @@
 local lspconfig = require("lspconfig")
 
+local common_attach_func = function(client)
+    require 'illuminate'.on_attach(client)
+end
+
 -- lua
 local luadev = require("lua-dev").setup {
+    on_attach = function(client)
+        common_attach_func(client)
+    end,
     -- add any options here, or leave empty to use the default settings
     -- lspconfig = {
     --   cmd = {"lua-language-server"}
@@ -32,8 +39,16 @@ lspconfig.sumneko_lua.setup(luadev)
 -- }
 
 -- golang
+lspconfig.gopls.setup{
+    on_attach = function(client)
+        common_attach_func(client)
+    end
+}
 lspconfig.golangci_lint_ls.setup{}
-lspconfig.gopls.setup{}
 
 -- rust
-lspconfig.rust_analyzer.setup{}
+lspconfig.rust_analyzer.setup{
+    on_attach = function(client)
+        common_attach_func(client)
+    end
+}
