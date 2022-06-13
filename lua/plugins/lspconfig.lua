@@ -34,3 +34,6 @@ lspconfig.sumneko_lua.setup(luadev)
 -- golang
 lspconfig.golangci_lint_ls.setup{}
 lspconfig.gopls.setup{}
+
+-- rust
+lspconfig.rust_analyzer.setup{}
