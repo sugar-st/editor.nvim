@@ -28,6 +28,8 @@ vim.keymap.set('n', '<space>d', telescope_builtin.lsp_definitions, opts)
 vim.keymap.set('n', '<space>t', telescope_builtin.lsp_type_definitions, opts)
 vim.keymap.set('n', '<space>r', telescope_builtin.lsp_references, opts)
 vim.keymap.set('n', '<space>i', telescope_builtin.lsp_implementations, opts)
+vim.keymap.set('n', '<space>s', telescope_builtin.lsp_document_symbols, opts)
+vim.keymap.set('n', '<space>S', telescope_builtin.lsp_workspace_symbols, opts)
 vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<space>c', vim.lsp.buf.code_action, opts)
 
