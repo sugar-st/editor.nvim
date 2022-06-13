@@ -15,6 +15,7 @@ require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    use 'sbdchd/neoformat'
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
