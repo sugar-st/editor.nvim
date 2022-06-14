@@ -45,5 +45,6 @@ require('packer').startup(function()
     use 'RRethy/vim-illuminate'
     use 'nvim-neo-tree/neo-tree.nvim'
     use 'MunifTanjim/nui.nvim'
+    use 'ray-x/lsp_signature.nvim'
 end)
 

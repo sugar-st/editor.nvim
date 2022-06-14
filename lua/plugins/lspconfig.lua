@@ -2,6 +2,12 @@ local lspconfig = require("lspconfig")
 
 local common_attach_func = function(client)
     require 'illuminate'.on_attach(client)
+    require 'lsp_signature'.on_attach {
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {
+            border = "rounded"
+        }
+    }
 end
 
 -- lua
