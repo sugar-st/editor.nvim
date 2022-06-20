@@ -47,4 +47,8 @@ require('packer').startup(function()
     use 'MunifTanjim/nui.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'j-hui/fidget.nvim'
+    use {
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
 end)
