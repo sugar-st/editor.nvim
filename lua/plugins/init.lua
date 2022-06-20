@@ -1,3 +1,4 @@
+require 'plugins.impatient'
 require 'plugins.feline'
 require 'plugins.lsp-installer'
 require 'plugins.lspconfig'
