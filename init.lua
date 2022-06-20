@@ -43,30 +43,31 @@ vim.api.nvim_set_keymap('n', 'gk', [[<cmd>:VGit hunk_up<cr>]], opts)
 vim.api.nvim_set_keymap('n', 'gp', [[<cmd>:VGit buffer_diff_preview<cr>]], opts)
 vim.keymap.set('n', 'gb', telescope_builtin.git_branches, opts)
 
-
--- window & buffer management
--- windows & linux
+-- window, tab and buffer management
 local splits = require 'smart-splits'
-vim.keymap.set('n', '<A-h>', splits.resize_left, opts)
-vim.keymap.set('n', '<A-j>', splits.resize_down, opts)
-vim.keymap.set('n', '<A-k>', splits.resize_up, opts)
-vim.keymap.set('n', '<A-l>', splits.resize_right, opts)
-vim.api.nvim_set_keymap('n', '<A-s>', [[<cmd>:sp<cr>]], opts)
-vim.api.nvim_set_keymap('n', '<A-v>', [[<cmd>:vsp<cr>]], opts)
--- macOS
-vim.keymap.set('n', '˙', splits.resize_left, opts)
-vim.keymap.set('n', '∆', splits.resize_down, opts)
-vim.keymap.set('n', '˚', splits.resize_up, opts)
-vim.keymap.set('n', '¬', splits.resize_right, opts)
-vim.api.nvim_set_keymap('n', 'ß', [[<cmd>:sp<cr>]], opts)
-vim.api.nvim_set_keymap('n', '√', [[<cmd>:vsp<cr>]], opts)
-
+if vim.fn.has("mac") then
+    vim.keymap.set('n', '˙', splits.resize_left, opts)
+    vim.keymap.set('n', '∆', splits.resize_down, opts)
+    vim.keymap.set('n', '˚', splits.resize_up, opts)
+    vim.keymap.set('n', '¬', splits.resize_right, opts)
+    vim.api.nvim_set_keymap('n', 'ß', [[<cmd>:sp<cr>]], opts)
+    vim.api.nvim_set_keymap('n', '√', [[<cmd>:vsp<cr>]], opts)
+else
+    vim.keymap.set('n', '<A-h>', splits.resize_left, opts)
+    vim.keymap.set('n', '<A-j>', splits.resize_down, opts)
+    vim.keymap.set('n', '<A-k>', splits.resize_up, opts)
+    vim.keymap.set('n', '<A-l>', splits.resize_right, opts)
+    vim.api.nvim_set_keymap('n', '<A-s>', [[<cmd>:sp<cr>]], opts)
+    vim.api.nvim_set_keymap('n', '<A-v>', [[<cmd>:vsp<cr>]], opts)
+end
 vim.keymap.set('n', '<C-h>', splits.move_cursor_left, opts)
 vim.keymap.set('n', '<C-j>', splits.move_cursor_down, opts)
 vim.keymap.set('n', '<C-k>', splits.move_cursor_up, opts)
 vim.keymap.set('n', '<C-l>', splits.move_cursor_right, opts)
 
 vim.api.nvim_set_keymap('n', '<C-t>', [[<cmd>:tabnew<cr>]], opts) -- new tab
+vim.api.nvim_set_keymap('n', 'tn', [[<cmd>:tabnext<cr>]], opts) -- prev tab
+vim.api.nvim_set_keymap('n', 'tp', [[<cmd>:tabprevious<cr>]], opts) -- nex tab
 
 -- copy
 vim.api.nvim_set_keymap('v', '<C-c>', [["+y]], opts)
