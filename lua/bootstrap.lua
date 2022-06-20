@@ -1,8 +1,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-                                  install_path})
+    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+        install_path })
 end
 
 require('packer').startup(function()
@@ -15,17 +15,17 @@ require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-    use 'sbdchd/neoformat'
+    use 'lukas-reineke/lsp-format.nvim'
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use 'TC72/telescope-tele-tabby.nvim'
     -- git
     use {
         'tanvirtin/vgit.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use 'mrjones2014/smart-splits.nvim'
     use 'nacro90/numb.nvim'
@@ -47,4 +47,3 @@ require('packer').startup(function()
     use 'MunifTanjim/nui.nvim'
     use 'ray-x/lsp_signature.nvim'
 end)
-
