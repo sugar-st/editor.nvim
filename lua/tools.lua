@@ -37,27 +37,26 @@ function M.get_git_del_status()
 end
 
 local function set_highlights(groups)
-  local lines = {}
-  for group, opts in pairs(groups) do
-    if opts.link then
-      table.insert(lines, fmt("highlight! link %s %s", group, opts.link))
-    else
-      table.insert(
-        lines,
-        fmt(
-          "highlight %s guifg=%s guibg=%s gui=%s guisp=%s",
-          group,
-          opts.fg or "NONE",
-          opts.bg or "NONE",
-          opts.style or "NONE",
-          opts.sp or "NONE"
-        )
-      )
+    local lines = {}
+    for group, opts in pairs(groups) do
+        if opts.link then
+            table.insert(lines, fmt("highlight! link %s %s", group, opts.link))
+        else
+            table.insert(
+                lines,
+                fmt(
+                    "highlight %s guifg=%s guibg=%s gui=%s guisp=%s",
+                    group,
+                    opts.fg or "NONE",
+                    opts.bg or "NONE",
+                    opts.style or "NONE",
+                    opts.sp or "NONE"
+                )
+            )
+        end
     end
-  end
-  vim.cmd(table.concat(lines, " | "))
+    vim.cmd(table.concat(lines, " | "))
 end
-
 
 M.colors = require 'tokyonight.colors'.setup {}
 M.colors.git_status = {

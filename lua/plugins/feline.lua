@@ -74,7 +74,7 @@ local mode_colors = {
 }
 
 local function get_mode_color()
-    return mode_colors[mode_alias[vim.api.nvim_get_mode().mode]]
+    return mode_colors[ mode_alias[vim.api.nvim_get_mode().mode] ]
 end
 
 local function hl_follow_mode()
@@ -84,7 +84,6 @@ local function hl_follow_mode()
         style = 'bold'
     }
 end
-
 
 local left_sep = {
     str = ' ',
@@ -152,7 +151,7 @@ local comps = {
     },
     git_add = {
         provider = providers.git_add,
-        hl = { 
+        hl = {
             fg = colors.black,
             bg = colors.git_status.added,
         },
@@ -166,7 +165,7 @@ local comps = {
     },
     git_change = {
         provider = providers.git_mod,
-        hl = { 
+        hl = {
             fg = colors.black,
             bg = colors.git_status.changed,
         },
@@ -174,7 +173,7 @@ local comps = {
     },
     git_delete = {
         provider = providers.git_del,
-        hl = { 
+        hl = {
             fg = colors.black,
             bg = colors.git_status.removed,
         },
@@ -214,7 +213,7 @@ require('feline').setup {
                 comps.file_info,
             }, {
                 -- lsp info
-                comps.current_func
+                -- comps.current_func
             }, {
                 comps.git_branch, comps.git_add, comps.git_change, comps.git_delete,
                 comps.encoding, comps.progress
