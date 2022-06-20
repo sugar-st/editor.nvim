@@ -46,4 +46,5 @@ require('packer').startup(function()
     use 'nvim-neo-tree/neo-tree.nvim'
     use 'MunifTanjim/nui.nvim'
     use 'ray-x/lsp_signature.nvim'
+    use 'j-hui/fidget.nvim'
 end)
