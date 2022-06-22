@@ -37,6 +37,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'SirVer/ultisnips'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'windwp/nvim-autopairs'
@@ -46,7 +47,6 @@ require('packer').startup(function()
     use 'RRethy/vim-illuminate'
     use 'nvim-neo-tree/neo-tree.nvim'
     use 'MunifTanjim/nui.nvim'
-    use 'ray-x/lsp_signature.nvim'
     use 'j-hui/fidget.nvim'
     use {
         'goolord/alpha-nvim',
