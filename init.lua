@@ -21,6 +21,7 @@ local telescope_builtin = require 'telescope.builtin'
 vim.keymap.set('n', ',f', telescope_builtin.find_files, opts)
 vim.keymap.set('n', ',g', telescope_builtin.live_grep, opts)
 vim.keymap.set('n', ',b', telescope_builtin.buffers, opts)
+vim.keymap.set('n', ',d', telescope_builtin.diagnostics, opts)
 vim.keymap.set('n', ',t', require('plugins.telescope').tabs, opts)
 
 -- lsp
