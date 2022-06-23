@@ -30,21 +30,22 @@ local kind_icons = {
 
 cmp.setup({
     snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            vim.fn['UltiSnips#Anon'](args.body) -- For `ultisnips` users.
+            vim.fn['UltiSnips#Anon'](args.body)
         end
     },
     window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        completion = {
+            col_offset   = -3,
+            side_padding = 0,
+        },
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>']     = cmp.mapping.scroll_docs(-4),
+        ['<C-f>']     = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-c>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({
+        ['<C-c>']     = cmp.mapping.abort(),
+        ['<CR>']      = cmp.mapping.confirm({
             select = true
         }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
@@ -59,11 +60,11 @@ cmp.setup({
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
-            vim_item.kind = string.format('%s ', kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
+            vim_item.kind = string.format(' %s ', kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
             -- Source
             vim_item.menu = ({
-                buffer = '[Buffer]',
-                nvim_lsp = '[LSP]',
+                buffer    = '[Buffer]',
+                nvim_lsp  = '[LSP]',
                 ultisnips = '[Snips]',
             })[entry.source.name]
             return vim_item

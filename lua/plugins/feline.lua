@@ -23,54 +23,54 @@ local colors = tools.colors
 -- circle	'●'
 
 local mode_alias = {
-    ['n'] = 'NORMAL',
-    ['no'] = 'OP',
-    ['nov'] = 'OP',
-    ['noV'] = 'OP',
-    ['no'] = 'OP',
-    ['niI'] = 'NORMAL',
-    ['niR'] = 'NORMAL',
-    ['niV'] = 'NORMAL',
-    ['v'] = 'VISUAL',
-    ['V'] = 'LINES',
-    [''] = 'BLOCK',
-    ['s'] = 'SELECT',
-    ['S'] = 'SELECT',
-    [''] = 'BLOCK',
-    ['i'] = 'INSERT',
-    ['ic'] = 'INSERT',
-    ['ix'] = 'INSERT',
-    ['R'] = 'REPLACE',
-    ['Rc'] = 'REPLACE',
-    ['Rv'] = 'V-REPLACE',
-    ['Rx'] = 'REPLACE',
-    ['c'] = 'COMMAND',
-    ['cv'] = 'COMMAND',
-    ['ce'] = 'COMMAND',
-    ['r'] = 'ENTER',
-    ['rm'] = 'MORE',
-    ['r?'] = 'CONFIRM',
-    ['!'] = 'SHELL',
-    ['t'] = 'TERM',
-    ['nt'] = 'TERM',
+    ['n']    = 'NORMAL',
+    ['no']   = 'OP',
+    ['nov']  = 'OP',
+    ['noV']  = 'OP',
+    ['no']  = 'OP',
+    ['niI']  = 'NORMAL',
+    ['niR']  = 'NORMAL',
+    ['niV']  = 'NORMAL',
+    ['v']    = 'VISUAL',
+    ['V']    = 'LINES',
+    ['']    = 'BLOCK',
+    ['s']    = 'SELECT',
+    ['S']    = 'SELECT',
+    ['']    = 'BLOCK',
+    ['i']    = 'INSERT',
+    ['ic']   = 'INSERT',
+    ['ix']   = 'INSERT',
+    ['R']    = 'REPLACE',
+    ['Rc']   = 'REPLACE',
+    ['Rv']   = 'V-REPLACE',
+    ['Rx']   = 'REPLACE',
+    ['c']    = 'COMMAND',
+    ['cv']   = 'COMMAND',
+    ['ce']   = 'COMMAND',
+    ['r']    = 'ENTER',
+    ['rm']   = 'MORE',
+    ['r?']   = 'CONFIRM',
+    ['!']    = 'SHELL',
+    ['t']    = 'TERM',
+    ['nt']   = 'TERM',
     ['null'] = 'NONE',
 }
 
 local mode_colors = {
-    NORMAL = colors.blue,
-    INSERT = colors.green,
-    VISUAL = colors.yellow,
-    OP = colors.green,
-    BLOCK = colors.yellow,
-    REPLACE = colors.violet,
+    NORMAL        = colors.blue,
+    INSERT        = colors.green,
+    VISUAL        = colors.yellow,
+    OP            = colors.green,
+    BLOCK         = colors.yellow,
+    REPLACE       = colors.violet,
     ['V-REPLACE'] = colors.violet,
-    ENTER = colors.cyan,
-    MORE = colors.cyan,
-    SELECT = colors.orange,
-    COMMAND = colors.magenta,
-    SHELL = colors.green,
-    TERM = colors.green,
-    NONE = colors.red
+    ENTER         = colors.cyan,
+    MORE          = colors.cyan,
+    SELECT        = colors.orange,
+    COMMAND       = colors.magenta,
+    SHELL         = colors.green,
+    TERM          = colors.green,
+    NONE          = colors.red
 }
 
 local function get_mode_color()
@@ -79,8 +79,8 @@ end
 
 local function hl_follow_mode()
     return {
-        name = require('feline.providers.vi_mode').get_mode_highlight_name(),
-        fg = get_mode_color(),
+        name  = require('feline.providers.vi_mode').get_mode_highlight_name(),
+        fg    = get_mode_color(),
         style = 'bold'
     }
 end
@@ -101,10 +101,10 @@ local right_sep = {
 --     - opts: options for current component
 -- and returns a string to be displayed
 local providers = {
-    git_branch = function(_, _) return tools.get_git_branch() end,
-    git_add = function(_, _) return tools.get_git_add_status() end,
-    git_mod = function(_, _) return tools.get_git_mod_status() end,
-    git_del = function(_, _) return tools.get_git_del_status() end,
+    git_branch   = function(_, _) return tools.get_git_branch() end,
+    git_add      = function(_, _) return tools.get_git_add_status() end,
+    git_mod      = function(_, _) return tools.get_git_mod_status() end,
+    git_del      = function(_, _) return tools.get_git_del_status() end,
     current_func = function(_, _)
         local res = require('nvim-treesitter').statusline()
         return res
