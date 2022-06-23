@@ -142,42 +142,46 @@ local comps = {
         hl = hl_follow_mode,
         right_sep = right_sep
     },
-    git_branch = {
-        provider = providers.git_branch,
-        hl = hl_follow_mode,
-        icon = ' ',
-        left_sep = left_sep,
-        right_sep = right_sep
-    },
-    git_add = {
-        provider = providers.git_add,
-        hl = {
-            fg = colors.black,
-            bg = colors.git_status.added,
+    git = {
+        branch = {
+            provider = providers.git_branch,
+            hl = hl_follow_mode,
+            icon = ' ',
+            left_sep = left_sep,
+            right_sep = right_sep
         },
-        right_sep = {
-            str = '',
+        add = {
+            provider = providers.git_add,
             hl = {
-                fg = colors.git_status.changed,
-                bg = colors.git_status.added
-            }
+                fg = colors.black,
+                bg = colors.git_status.added,
+            },
+            right_sep = {
+                str = '',
+                hl = {
+                    fg = colors.git_status.changed,
+                    bg = colors.git_status.added
+                }
+            },
         },
-    },
-    git_change = {
-        provider = providers.git_mod,
-        hl = {
-            fg = colors.black,
-            bg = colors.git_status.changed,
+        change = {
+            provider = providers.git_mod,
+            hl = {
+                fg = colors.black,
+                bg = colors.git_status.changed,
+            },
+            right_sep = 'left_filled',
+
         },
-        right_sep = 'left_filled',
-    },
-    git_delete = {
-        provider = providers.git_del,
-        hl = {
-            fg = colors.black,
-            bg = colors.git_status.removed,
+        delete = {
+            provider = providers.git_del,
+            hl = {
+                fg = colors.black,
+                bg = colors.git_status.removed,
+            },
+            right_sep = 'left_filled',
+
         },
-        right_sep = 'left_filled',
     },
     encoding = {
         provider = 'file_encoding',
@@ -203,6 +207,20 @@ local comps = {
         provider = 'file_size',
         hl = { fg = colors.blue },
         left_sep = left_sep,
+    },
+    diagnostic = {
+        hints = {
+            provider = 'diagnostic_hints',
+        },
+        info = {
+            provider = 'diagnostic_info',
+        },
+        warnings = {
+            provider = 'diagnostic_warnings',
+        },
+        errors = {
+            provider = 'diagnostic_errors',
+        },
     }
 }
 
@@ -211,11 +229,15 @@ require('feline').setup {
         active = {
             {
                 comps.file_info,
+                comps.diagnostic.hints,
+                comps.diagnostic.info,
+                comps.diagnostic.warnings,
+                comps.diagnostic.errors,
             }, {
                 -- lsp info
                 -- comps.current_func
             }, {
-                comps.git_branch, comps.git_add, comps.git_change, comps.git_delete,
+                comps.git.branch, comps.git.add, comps.git.change, comps.git.delete,
                 comps.encoding, comps.progress
             },
         },
