@@ -46,14 +46,15 @@ vim.keymap.set('n', 'gb', telescope_builtin.git_branches, opts)
 
 -- window, tab and buffer management
 local splits = require 'smart-splits'
-if vim.fn.has("mac") then
+if vim.fn.has('mac') then
     vim.keymap.set('n', '˙', splits.resize_left, opts)
     vim.keymap.set('n', '∆', splits.resize_down, opts)
     vim.keymap.set('n', '˚', splits.resize_up, opts)
     vim.keymap.set('n', '¬', splits.resize_right, opts)
     vim.api.nvim_set_keymap('n', 'ß', [[<cmd>:sp<cr>]], opts)
     vim.api.nvim_set_keymap('n', '√', [[<cmd>:vsp<cr>]], opts)
-else
+end
+if vim.fn.has('linux') then
     vim.keymap.set('n', '<A-h>', splits.resize_left, opts)
     vim.keymap.set('n', '<A-j>', splits.resize_down, opts)
     vim.keymap.set('n', '<A-k>', splits.resize_up, opts)
@@ -71,7 +72,7 @@ vim.api.nvim_set_keymap('n', 'tn', [[<cmd>:tabnext<cr>]], opts) -- prev tab
 vim.api.nvim_set_keymap('n', 'tp', [[<cmd>:tabprevious<cr>]], opts) -- nex tab
 
 -- copy
-vim.api.nvim_set_keymap('v', '<C-c>', [["+y]], opts)
+vim.opt.clipboard = 'unnamedplus'
 
 -- others
 vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>:PackerSync<cr>]], opts)
