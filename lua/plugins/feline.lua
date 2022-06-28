@@ -211,15 +211,19 @@ local comps = {
     diagnostic = {
         hints = {
             provider = 'diagnostic_hints',
+            hl = { fg = colors.blue },
         },
         info = {
             provider = 'diagnostic_info',
+            hl = { fg = colors.green },
         },
         warnings = {
             provider = 'diagnostic_warnings',
+            hl = { fg = colors.yellow },
         },
         errors = {
             provider = 'diagnostic_errors',
+            hl = { fg = colors.red },
         },
     }
 }
