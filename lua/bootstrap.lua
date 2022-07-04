@@ -1,8 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-        install_path })
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 require 'packer'.startup(function()
@@ -16,6 +15,7 @@ require 'packer'.startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    use 'p00f/nvim-ts-rainbow'
     use 'lukas-reineke/lsp-format.nvim'
     -- telescope
     use {
@@ -30,7 +30,7 @@ require 'packer'.startup(function()
     }
     use 'mrjones2014/smart-splits.nvim'
     use 'nacro90/numb.nvim'
-    use 'haringsrob/nvim_context_vt'
+    -- use 'haringsrob/nvim_context_vt'
     -- completion
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
@@ -41,6 +41,8 @@ require 'packer'.startup(function()
     use 'SirVer/ultisnips'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'windwp/nvim-autopairs'
+    -- rust
+    use 'simrat39/rust-tools.nvim'
     -- theme
     use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
