@@ -1,7 +1,7 @@
 M = {}
 
-require('telescope').load_extension('tele_tabby')
-require('telescope').setup {
+require 'telescope'.load_extension('tele_tabby')
+require 'telescope'.setup {
     defaults = {
         prompt_prefix = ' 🔍 '
     },
@@ -27,7 +27,7 @@ require('telescope').setup {
 }
 
 function M.tabs()
-    local themes = require('telescope.themes')
+    local themes = require 'telescope.themes'
     local opts = themes.get_dropdown {
         winblend = 10,
         border = true,
@@ -36,7 +36,7 @@ function M.tabs()
         -- heigth=20,
         -- width= 120
     }
-    require'telescope'.extensions.tele_tabby.list(opts)
+    require 'telescope'.extensions.tele_tabby.list(opts)
 end
 
 return M

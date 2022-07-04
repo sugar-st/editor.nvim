@@ -1,8 +1,8 @@
-require('smart-splits').setup {
+require 'smart-splits'.setup {
     -- Ignored filetypes (only while resizing)
-    ignored_filetypes = {'nofile', 'quickfix', 'prompt'},
+    ignored_filetypes = { 'nofile', 'quickfix', 'prompt' },
     -- Ignored buffer types (only while resizing)
-    ignored_buftypes = {'NvimTree'},
+    ignored_buftypes = { 'NvimTree' },
     -- when moving cursor between splits left or right,
     -- place the cursor on the same row of the *screen*
     -- regardless of line numbers. False by default.

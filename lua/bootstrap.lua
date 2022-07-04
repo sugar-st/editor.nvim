@@ -5,7 +5,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
         install_path })
 end
 
-require('packer').startup(function()
+require 'packer'.startup(function()
     use 'lewis6991/impatient.nvim'
     use 'wbthomason/packer.nvim'
     use 'feline-nvim/feline.nvim'

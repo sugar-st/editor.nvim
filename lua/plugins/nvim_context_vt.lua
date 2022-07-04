@@ -1,3 +1,3 @@
-require('nvim_context_vt').setup {
+require 'nvim_context_vt'.setup {
     prefix = ' ⇄',
 }

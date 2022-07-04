@@ -1,8 +1,8 @@
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = {'lua', 'vim'},
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = { 'lua', 'vim' },
     highlight = {
         enable = true,
         use_languagetree = true
     }
 }
--- TODO: lua print(require('nvim-treesitter'):statusline{})   
+-- TODO: lua print(require 'nvim-treesitter':statusline{})

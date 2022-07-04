@@ -79,7 +79,7 @@ end
 
 local function hl_follow_mode()
     return {
-        name  = require('feline.providers.vi_mode').get_mode_highlight_name(),
+        name  = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
         fg    = get_mode_color(),
         style = 'bold'
     }
@@ -106,7 +106,7 @@ local providers = {
     git_mod      = function(_, _) return tools.get_git_mod_status() end,
     git_del      = function(_, _) return tools.get_git_del_status() end,
     current_func = function(_, _)
-        local res = require('nvim-treesitter').statusline()
+        local res = require 'nvim-treesitter'.statusline()
         return res
     end,
 }
@@ -129,7 +129,7 @@ local comps = {
         hl = hl_follow_mode,
         -- hl = function()
         --     return {
-        --         name = require('feline.providers.vi_mode').get_mode_highlight_name(),
+        --         name = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
         --         fg = get_mode_color(),
         --         bg = colors.bg_dark,
         --         style = 'bold'
@@ -209,26 +209,26 @@ local comps = {
         left_sep = left_sep,
     },
     diagnostic = {
-        hints = {
-            provider = 'diagnostic_hints',
-            hl = { fg = colors.blue },
-        },
         info = {
             provider = 'diagnostic_info',
-            hl = { fg = colors.green },
+            hl = 'DiagnosticInfo',
+        },
+        hints = {
+            provider = 'diagnostic_hints',
+            hl = 'DiagnosticHint',
         },
         warnings = {
             provider = 'diagnostic_warnings',
-            hl = { fg = colors.yellow },
+            hl = 'DiagnosticWarn',
         },
         errors = {
             provider = 'diagnostic_errors',
-            hl = { fg = colors.red },
+            hl = 'DiagnosticError',
         },
     }
 }
 
-require('feline').setup {
+require 'feline'.setup {
     components = {
         active = {
             {

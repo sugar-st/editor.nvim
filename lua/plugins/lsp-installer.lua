@@ -1,1 +1,1 @@
-require("nvim-lsp-installer").setup {}
+require 'nvim-lsp-installer'.setup {}
