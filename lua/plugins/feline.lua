@@ -1,6 +1,8 @@
 local tools = require 'tools'
 local colors = tools.colors
 
+-- ██
+-- ██
 -- vertical_bar	'┃'
 -- vertical_bar_thin	'│'
 -- left	''
@@ -80,7 +82,7 @@ end
 local function hl_follow_mode()
     return {
         name  = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
-        fg    = get_mode_color(),
+        -- fg    = get_mode_color(),
         style = 'bold'
     }
 end
@@ -112,12 +114,20 @@ local providers = {
 }
 
 local comps = {
+    left = {
+        provider = '█'
+    },
+    right = {
+        provider = '█'
+    },
     mode = {
         provider = 'vi_mode',
         icon = '',
         hl = {
             style = 'bold'
-        }
+        },
+        left_sep = ' ',
+        right_sep = ' ',
     },
     file_info = {
         provider = {
@@ -232,6 +242,8 @@ require 'feline'.setup {
     components = {
         active = {
             {
+                comps.mode,
+                comps.left,
                 comps.file_info,
                 comps.diagnostic.hints,
                 comps.diagnostic.info,
@@ -242,7 +254,8 @@ require 'feline'.setup {
                 -- comps.current_func
             }, {
                 comps.git.branch, comps.git.add, comps.git.change, comps.git.delete,
-                comps.encoding, comps.progress
+                comps.encoding, comps.progress,
+                comps.right,
             },
         },
         inactive = {

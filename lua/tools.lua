@@ -58,12 +58,18 @@ local function set_highlights(groups)
     vim.cmd(table.concat(lines, " | "))
 end
 
-M.colors = require 'tokyonight.colors'.setup {}
+-- M.colors = require 'tokyonight.colors'.setup {}
+M.colors = {}
 M.colors.git_status = {
     added = M.colors.green,
     changed = M.colors.blue,
     removed = M.colors.red,
 }
 
+
+function M.map(mode, l, r, opts)
+    opts = opts or {}
+    vim.keymap.set(mode, l, r, opts)
+end
 
 return M

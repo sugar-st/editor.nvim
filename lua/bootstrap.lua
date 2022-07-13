@@ -24,10 +24,11 @@ require 'packer'.startup(function()
     }
     use 'TC72/telescope-tele-tabby.nvim'
     -- git
-    use {
-        'tanvirtin/vgit.nvim',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+    -- use {
+    --     'tanvirtin/vgit.nvim',
+    --     requires = { { 'nvim-lua/plenary.nvim' } }
+    -- }
+    use 'lewis6991/gitsigns.nvim'
     use 'mrjones2014/smart-splits.nvim'
     use 'nacro90/numb.nvim'
     -- use 'haringsrob/nvim_context_vt'
@@ -44,8 +45,9 @@ require 'packer'.startup(function()
     -- rust
     use 'simrat39/rust-tools.nvim'
     -- theme
-    use 'folke/tokyonight.nvim'
+    -- use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
+    use 'projekt0n/github-nvim-theme'
     use 'RRethy/vim-illuminate'
     use 'nvim-neo-tree/neo-tree.nvim'
     use 'MunifTanjim/nui.nvim'

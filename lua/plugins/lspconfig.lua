@@ -29,6 +29,5 @@ lspconfig.golangci_lint_ls.setup {}
 lspconfig.rust_analyzer.setup {
     on_attach = function(client)
         common_attach_func(client)
-        require 'rust-tools.inlay_hints'.set_inlay_hints()
     end
 }
