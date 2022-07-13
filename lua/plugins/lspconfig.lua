@@ -26,6 +26,7 @@ lspconfig.gopls.setup {
 lspconfig.golangci_lint_ls.setup {}
 
 -- rust
+require 'rust-tools'.setup {}
 lspconfig.rust_analyzer.setup {
     on_attach = function(client)
         common_attach_func(client)
