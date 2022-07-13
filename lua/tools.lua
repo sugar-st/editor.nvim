@@ -59,7 +59,10 @@ local function set_highlights(groups)
 end
 
 -- M.colors = require 'tokyonight.colors'.setup {}
-M.colors = {}
+M.colors = {
+    bg = '#282c34',
+    fg = '#abb2bf',
+}
 M.colors.git_status = {
     added = M.colors.green,
     changed = M.colors.blue,

@@ -1,8 +1,23 @@
-local tools = require 'tools'
-local colors = tools.colors
+local colors = {
+    bg = '#282c34',
+    fg = '#abb2bf',
+    yellow = '#e0af68',
+    cyan = '#56b6c2',
+    darkblue = '#081633',
+    green = '#98c379',
+    orange = '#d19a66',
+    violet = '#a9a1e1',
+    magenta = '#c678dd',
+    blue = '#61afef',
+    red = '#e86671'
+}
 
--- ██
--- ██
+colors.git_status = {
+    added = colors.green,
+    changed = colors.blue,
+    removed = colors.red,
+}
+
 -- vertical_bar	'┃'
 -- vertical_bar_thin	'│'
 -- left	''
@@ -59,21 +74,38 @@ local mode_alias = {
 }
 
 local mode_colors = {
-    NORMAL        = colors.blue,
-    INSERT        = colors.green,
-    VISUAL        = colors.yellow,
-    OP            = colors.green,
-    BLOCK         = colors.yellow,
-    REPLACE       = colors.violet,
+    NORMAL = colors.green,
+    INSERT = colors.red,
+    VISUAL = colors.magenta,
+    OP = colors.green,
+    BLOCK = colors.blue,
+    REPLACE = colors.violet,
     ['V-REPLACE'] = colors.violet,
-    ENTER         = colors.cyan,
-    MORE          = colors.cyan,
-    SELECT        = colors.orange,
-    COMMAND       = colors.magenta,
-    SHELL         = colors.green,
-    TERM          = colors.green,
-    NONE          = colors.red
+    ENTER = colors.cyan,
+    MORE = colors.cyan,
+    SELECT = colors.orange,
+    COMMAND = colors.green,
+    SHELL = colors.green,
+    TERM = colors.green,
+    NONE = colors.yellow
 }
+
+-- local mode_colors = {
+--     NORMAL        = colors.blue,
+--     INSERT        = colors.green,
+--     VISUAL        = colors.yellow,
+--     OP            = colors.green,
+--     BLOCK         = colors.yellow,
+--     REPLACE       = colors.violet,
+--     ['V-REPLACE'] = colors.violet,
+--     ENTER         = colors.cyan,
+--     MORE          = colors.cyan,
+--     SELECT        = colors.orange,
+--     COMMAND       = colors.magenta,
+--     SHELL         = colors.green,
+--     TERM          = colors.green,
+--     NONE          = colors.red
+-- }
 
 local function get_mode_color()
     return mode_colors[ mode_alias[vim.api.nvim_get_mode().mode] ]
@@ -81,9 +113,9 @@ end
 
 local function hl_follow_mode()
     return {
-        name  = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
+        name = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
         -- fg    = get_mode_color(),
-        style = 'bold'
+        -- style = 'bold'
     }
 end
 
@@ -103,10 +135,14 @@ local right_sep = {
 --     - opts: options for current component
 -- and returns a string to be displayed
 local providers = {
-    git_branch   = function(_, _) return tools.get_git_branch() end,
-    git_add      = function(_, _) return tools.get_git_add_status() end,
-    git_mod      = function(_, _) return tools.get_git_mod_status() end,
-    git_del      = function(_, _) return tools.get_git_del_status() end,
+    git_branch   = 'git_branch',
+    git_add      = 'git_diff_added',
+    git_mod      = 'git_diff_changed',
+    git_del      = 'git_diff_removed',
+    -- git_branch   = function(_, _) return tools.get_git_branch() end,
+    -- git_add      = function(_, _) return tools.get_git_add_status() end,
+    -- git_mod      = function(_, _) return tools.get_git_mod_status() end,
+    -- git_del      = function(_, _) return tools.get_git_del_status() end,
     current_func = function(_, _)
         local res = require 'nvim-treesitter'.statusline()
         return res
@@ -118,14 +154,17 @@ local comps = {
         provider = '█'
     },
     right = {
-        provider = '█'
+        provider = ''
+    },
+    sep = {
+        provider = '┃'
     },
     mode = {
         provider = 'vi_mode',
         icon = '',
-        hl = {
-            style = 'bold'
-        },
+        -- hl = {
+        --     style = 'bold'
+        -- },
         left_sep = ' ',
         right_sep = ' ',
     },
@@ -146,6 +185,7 @@ local comps = {
         --     }
         -- end,
         left_sep = left_sep,
+        right_sep = right_sep,
     },
     current_func = {
         provider = providers.current_func,
@@ -155,42 +195,22 @@ local comps = {
     git = {
         branch = {
             provider = providers.git_branch,
-            hl = hl_follow_mode,
             icon = ' ',
             left_sep = left_sep,
-            right_sep = right_sep
+            right_sep = right_sep,
         },
         add = {
             provider = providers.git_add,
-            hl = {
-                fg = colors.black,
-                bg = colors.git_status.added,
-            },
-            right_sep = {
-                str = '',
-                hl = {
-                    fg = colors.git_status.changed,
-                    bg = colors.git_status.added
-                }
-            },
+            hl = 'GitSignsAdd',
         },
         change = {
             provider = providers.git_mod,
-            hl = {
-                fg = colors.black,
-                bg = colors.git_status.changed,
-            },
-            right_sep = 'left_filled',
-
+            hl = 'GitSignsChange',
         },
         delete = {
             provider = providers.git_del,
-            hl = {
-                fg = colors.black,
-                bg = colors.git_status.removed,
-            },
-            right_sep = 'left_filled',
-
+            right_sep = right_sep,
+            hl = 'GitSignsDelete',
         },
     },
     encoding = {
@@ -239,28 +259,30 @@ local comps = {
 }
 
 require 'feline'.setup {
+    colors = { bg = colors.bg, fg = colors.fg },
     components = {
         active = {
             {
-                comps.mode,
                 comps.left,
+                comps.mode,
+                comps.sep,
                 comps.file_info,
-                comps.diagnostic.hints,
-                comps.diagnostic.info,
-                comps.diagnostic.warnings,
-                comps.diagnostic.errors,
-            }, {
-                -- lsp info
-                -- comps.current_func
-            }, {
-                comps.git.branch, comps.git.add, comps.git.change, comps.git.delete,
-                comps.encoding, comps.progress,
+                comps.sep,
+                comps.diagnostic.hints, comps.diagnostic.info, comps.diagnostic.warnings, comps.diagnostic.errors,
                 comps.right,
-            },
+            }, {
+
+            }, {
+                comps.git.branch,
+                comps.sep,
+                comps.git.add, comps.git.change, comps.git.delete,
+                comps.sep,
+                comps.encoding, comps.progress,
+            }
         },
         inactive = {
             { comps.file_type, comps.file_size },
-            {}, {}
-        },
-    }
+        }
+
+    },
 }
