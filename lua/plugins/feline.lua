@@ -1,50 +1,41 @@
 local colors = {
-    bg = '#282c34',
-    fg = '#abb2bf',
-    yellow = '#e0af68',
-    cyan = '#56b6c2',
-    darkblue = '#081633',
-    green = '#98c379',
-    orange = '#d19a66',
-    violet = '#a9a1e1',
-    magenta = '#c678dd',
-    blue = '#61afef',
-    red = '#e86671'
+    bg       = '#2c323c',
+    -- fg       = none,
+    yellow   = '#e5c07b',
+    cyan     = '#8abeb7',
+    darkblue = '#528bff',
+    green    = '#98c379',
+    orange   = '#d19a66',
+    violet   = '#b294bb',
+    magenta  = '#ff80ff',
+    blue     = '#61afef';
+    red      = '#e88388';
 }
 
-colors.git_status = {
-    added = colors.green,
-    changed = colors.blue,
-    removed = colors.red,
+local vi_mode_colors = {
+    ['NORMAL']    = colors.green,
+    ['OP']        = colors.green,
+    ['INSERT']    = colors.yellow,
+    ['VISUAL']    = colors.blue,
+    ['LINES']     = colors.blue,
+    ['BLOCK']     = colors.blue,
+    ['REPLACE']   = colors.violet,
+    ['V-REPLACE'] = colors.violet,
+    ['ENTER']     = colors.cyan,
+    ['MORE']      = colors.cyan,
+    ['SELECT']    = colors.orange,
+    ['COMMAND']   = colors.green,
+    ['SHELL']     = colors.green,
+    ['TERM']      = colors.green,
+    ['NONE']      = colors.red,
 }
 
--- vertical_bar	'┃'
--- vertical_bar_thin	'│'
--- left	''
--- right	''
--- block	'█'
--- left_filled	''
--- right_filled	''
--- slant_left	''
--- slant_left_thin	''
--- slant_right	''
--- slant_right_thin	''
--- slant_left_2	''
--- slant_left_2_thin	''
--- slant_right_2	''
--- slant_right_2_thin	''
--- left_rounded	''
--- left_rounded_thin	''
--- right_rounded	''
--- right_rounded_thin	''
--- circle	'●'
-
-local mode_alias = {
+local vi_mode_text = {
     ['n']    = 'NORMAL',
-    ['no']   = 'OP',
-    ['nov']  = 'OP',
-    ['noV']  = 'OP',
-    ['no']  = 'OP',
+    ['no']   = '  OP  ',
+    ['nov']  = '  OP  ',
+    ['noV']  = '  OP  ',
+    ['no']  = '  OP  ',
     ['niI']  = 'NORMAL',
     ['niR']  = 'NORMAL',
     ['niV']  = 'NORMAL',
@@ -65,224 +56,252 @@ local mode_alias = {
     ['cv']   = 'COMMAND',
     ['ce']   = 'COMMAND',
     ['r']    = 'ENTER',
-    ['rm']   = 'MORE',
+    ['rm']   = ' MORE ',
     ['r?']   = 'CONFIRM',
     ['!']    = 'SHELL',
-    ['t']    = 'TERM',
-    ['nt']   = 'TERM',
-    ['null'] = 'NONE',
+    ['t']    = ' TERM ',
+    ['nt']   = ' TERM ',
+    ['null'] = ' NONE ',
 }
 
-local mode_colors = {
-    NORMAL = colors.green,
-    INSERT = colors.red,
-    VISUAL = colors.magenta,
-    OP = colors.green,
-    BLOCK = colors.blue,
-    REPLACE = colors.violet,
-    ['V-REPLACE'] = colors.violet,
-    ENTER = colors.cyan,
-    MORE = colors.cyan,
-    SELECT = colors.orange,
-    COMMAND = colors.green,
-    SHELL = colors.green,
-    TERM = colors.green,
-    NONE = colors.yellow
-}
-
--- local mode_colors = {
---     NORMAL        = colors.blue,
---     INSERT        = colors.green,
---     VISUAL        = colors.yellow,
---     OP            = colors.green,
---     BLOCK         = colors.yellow,
---     REPLACE       = colors.violet,
---     ['V-REPLACE'] = colors.violet,
---     ENTER         = colors.cyan,
---     MORE          = colors.cyan,
---     SELECT        = colors.orange,
---     COMMAND       = colors.magenta,
---     SHELL         = colors.green,
---     TERM          = colors.green,
---     NONE          = colors.red
--- }
-
-local function get_mode_color()
-    return mode_colors[ mode_alias[vim.api.nvim_get_mode().mode] ]
-end
-
-local function hl_follow_mode()
-    return {
-        name = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
-        -- fg    = get_mode_color(),
-        -- style = 'bold'
-    }
-end
-
-local left_sep = {
-    str = ' ',
-}
-
-
-local right_sep = {
-    str = ' ',
-}
-
-
--- INFO: custom provider
--- a custom provider for the statusline is a function takes 2 arguments:
---     - component: current component itself
---     - opts: options for current component
--- and returns a string to be displayed
-local providers = {
-    git_branch   = 'git_branch',
-    git_add      = 'git_diff_added',
-    git_mod      = 'git_diff_changed',
-    git_del      = 'git_diff_removed',
-    -- git_branch   = function(_, _) return tools.get_git_branch() end,
-    -- git_add      = function(_, _) return tools.get_git_add_status() end,
-    -- git_mod      = function(_, _) return tools.get_git_mod_status() end,
-    -- git_del      = function(_, _) return tools.get_git_del_status() end,
-    current_func = function(_, _)
-        local res = require 'nvim-treesitter'.statusline()
-        return res
-    end,
-}
+local lsp = require 'feline.providers.lsp'
+local vi_mode = require 'feline.providers.vi_mode'
 
 local comps = {
-    left = {
-        provider = '█'
-    },
-    right = {
-        provider = ''
-    },
-    sep = {
-        provider = '┃'
-    },
-    mode = {
-        provider = 'vi_mode',
-        icon = '',
-        -- hl = {
-        --     style = 'bold'
-        -- },
-        left_sep = ' ',
-        right_sep = ' ',
-    },
-    file_info = {
-        provider = {
-            name = 'file_info',
-            opts = {
-                type = 'relative',
-            },
+    vi_mode = {
+        left = {
+            provider = function()
+                local current_text = ' ' .. vi_mode_text[vim.fn.mode()] .. ' '
+                return current_text
+            end,
+            hl = function()
+                return {
+                    name = vi_mode.get_mode_highlight_name(),
+                    fg = colors.bg,
+                    bg = vi_mode_colors[vi_mode_text[vim.fn.mode()]],
+                }
+            end,
         },
-        hl = hl_follow_mode,
-        -- hl = function()
-        --     return {
-        --         name = require 'feline.providers.vi_mode'.get_mode_highlight_name(),
-        --         fg = get_mode_color(),
-        --         bg = colors.bg_dark,
-        --         style = 'bold'
-        --     }
-        -- end,
-        left_sep = left_sep,
-        right_sep = right_sep,
+        right = {
+            provider = '▊',
+            hl = function()
+                local val = {
+                    name = vi_mode.get_mode_highlight_name(),
+                    fg = vi_mode_colors[vi_mode_text[vim.fn.mode()]],
+                }
+                return val
+            end,
+            left_sep = ' '
+        }
     },
-    current_func = {
-        provider = providers.current_func,
-        hl = hl_follow_mode,
-        right_sep = right_sep
+    file = {
+        info = {
+            provider = {
+                name = 'file_info',
+                opts = {
+                    type = 'relative',
+                }
+            },
+            enabled = function() return true end,
+            hl = {
+                -- fg = colors.blue,
+                style = 'NONE'
+            },
+            left_sep = ' '
+        },
+        encoding = {
+            provider = 'file_encoding',
+            left_sep = ' ',
+            hl = {
+                fg = colors.violet,
+                style = 'bold'
+            }
+        },
+        type = {
+            provider = {
+                name = 'file_type',
+                opts = {
+                    case = 'lowercase'
+                }
+            },
+            left_sep = ' ',
+        },
+        os = {
+            provider = function()
+                local os = vim.bo.fileformat:upper()
+                local icon
+                if os == 'UNIX' then
+                    icon = ' '
+                elseif os == 'MAC' then
+                    icon = ' '
+                else
+                    icon = ' '
+                end
+                return icon .. os
+            end,
+            left_sep = ' ',
+            hl = {
+                fg = colors.violet,
+                style = 'bold'
+            }
+        }
+    },
+    line_percentage = {
+        provider = 'line_percentage',
+        left_sep = ' ',
+    },
+    position = {
+        provider = 'position',
+        left_sep = ' ',
+        hl = function()
+            local val = {
+                name = vi_mode.get_mode_highlight_name(),
+                fg = colors.bg,
+                bg = vi_mode.get_mode_color(),
+                style = 'bold'
+            }
+            return val
+        end
+    },
+    scroll_bar = {
+        provider = 'scroll_bar',
+        left_sep = ' ',
+        hl = {
+            fg = colors.blue,
+            style = 'bold'
+        }
+    },
+    diagnostic = {
+        err = {
+            provider = 'diagnostic_errors',
+            enabled = function()
+                return lsp.diagnostics_exist('Error')
+            end,
+            hl = {
+                fg = colors.red
+            },
+            icon = '● ',
+            left_sep = ' ',
+        },
+        warn = {
+            provider = 'diagnostic_warnings',
+            enabled = function()
+                return lsp.diagnostics_exist('Warn')
+            end,
+            hl = {
+                fg = colors.yellow
+            },
+            icon = '● ',
+            left_sep = ' ',
+        },
+        hint = {
+            provider = 'diagnostic_hints',
+            enabled = function()
+                return lsp.diagnostics_exist('Hint')
+            end,
+            hl = {
+                fg = colors.cyan
+            },
+            icon = '● ',
+            left_sep = ' ',
+        },
+        info = {
+            provider = 'diagnostic_info',
+            enabled = function()
+                return lsp.diagnostics_exist('Info')
+            end,
+            hl = {
+                fg = colors.blue
+            },
+            icon = '● ',
+            left_sep = ' ',
+        },
+    },
+    lsp = {
+        name = {
+            provider = 'lsp_client_names',
+            left_sep = ' ',
+            icon = '  ',
+            hl = {
+                fg = colors.yellow
+            }
+        }
     },
     git = {
         branch = {
-            provider = providers.git_branch,
-            icon = ' ',
-            left_sep = left_sep,
-            right_sep = right_sep,
+            provider = 'git_branch',
+            icon = {
+                str = ' ',
+                hl = {
+                    fg = colors.cyan
+                }
+            },
+            -- icon = 'git:',
+            left_sep = ' ',
+            -- hl = {
+            --     fg = colors.red,
+            -- },
         },
         add = {
-            provider = providers.git_add,
-            hl = 'GitSignsAdd',
+            provider = 'git_diff_added',
+            hl = {
+                fg = colors.green
+            }
         },
         change = {
-            provider = providers.git_mod,
-            hl = 'GitSignsChange',
+            provider = 'git_diff_changed',
+            hl = {
+                fg = colors.orange
+            }
         },
-        delete = {
-            provider = providers.git_del,
-            right_sep = right_sep,
-            hl = 'GitSignsDelete',
-        },
-    },
-    encoding = {
-        provider = 'file_encoding',
-        left_sep = left_sep,
-    },
-    format = { provider = 'file_format' },
-    progress = {
-        provider = 'scroll_bar',
-        left_sep = left_sep,
-        right_sep = right_sep,
-        hl = hl_follow_mode,
-    },
-    file_type = {
-        provider = {
-            name = 'file_type',
-            opts = {
-                type = 'titlecase'
-            },
-        },
-        hl = { fg = colors.blue },
-    },
-    file_size = {
-        provider = 'file_size',
-        hl = { fg = colors.blue },
-        left_sep = left_sep,
-    },
-    diagnostic = {
-        info = {
-            provider = 'diagnostic_info',
-            hl = 'DiagnosticInfo',
-        },
-        hints = {
-            provider = 'diagnostic_hints',
-            hl = 'DiagnosticHint',
-        },
-        warnings = {
-            provider = 'diagnostic_warnings',
-            hl = 'DiagnosticWarn',
-        },
-        errors = {
-            provider = 'diagnostic_errors',
-            hl = 'DiagnosticError',
-        },
+        remove = {
+            provider = 'git_diff_removed',
+            hl = {
+                fg = colors.red
+            }
+        }
     }
 }
 
 require 'feline'.setup {
-    colors = { bg = colors.bg, fg = colors.fg },
     components = {
         active = {
             {
-                comps.left,
-                comps.mode,
-                comps.sep,
-                comps.file_info,
-                comps.sep,
-                comps.diagnostic.hints, comps.diagnostic.info, comps.diagnostic.warnings, comps.diagnostic.errors,
-                comps.right,
+                comps.vi_mode.left,
+                comps.file.info,
+                -- comps.git.branch,
+                comps.diagnostic.err,
+                comps.diagnostic.warn,
+                comps.diagnostic.hint,
+                comps.diagnostic.info
             }, {
-
             }, {
                 comps.git.branch,
-                comps.sep,
-                comps.git.add, comps.git.change, comps.git.delete,
-                comps.sep,
-                comps.encoding, comps.progress,
-            }
+                comps.line_percentage,
+                comps.vi_mode.right
+            },
         },
         inactive = {
-            { comps.file_type, comps.file_size },
+            {
+                comps.file.type
+            }, {}, {}
         }
-
     },
+    force_inactive = {
+        filetypes = {
+            '^neo%-tree$',
+            '^NvimTree$',
+            '^packer$',
+            '^alpha$',
+            '^startify$',
+            '^fugitive$',
+            '^fugitiveblame$',
+            '^qf$',
+            '^help$',
+            '^man$'
+        },
+        buftypes = { '^terminal$' },
+        bufnames = {}
+    },
+    vi_mode_colors = vi_mode_colors,
 }

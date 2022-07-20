@@ -1,4 +1,6 @@
 require 'bootstrap'
+-- hide mode
+vim.opt.showmode = false
 -- truecolor
 vim.opt.termguicolors = true
 -- tabs
