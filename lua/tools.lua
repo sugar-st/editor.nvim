@@ -58,15 +58,18 @@ local function set_highlights(groups)
     vim.cmd(table.concat(lines, " | "))
 end
 
--- M.colors = require 'tokyonight.colors'.setup {}
 M.colors = {
-    bg = '#282c34',
-    fg = '#abb2bf',
-}
-M.colors.git_status = {
-    added = M.colors.green,
-    changed = M.colors.blue,
-    removed = M.colors.red,
+    bg       = '#2c323c',
+    -- fg       = none,
+    yellow   = '#e5c07b',
+    cyan     = '#8abeb7',
+    darkblue = '#528bff',
+    green    = '#98c379',
+    orange   = '#d19a66',
+    violet   = '#b294bb',
+    magenta  = '#ff80ff',
+    blue     = '#61afef';
+    red      = '#e88388';
 }
 
 
