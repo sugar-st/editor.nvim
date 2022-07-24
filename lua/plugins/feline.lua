@@ -219,15 +219,13 @@ local comps = {
             provider = 'git_branch',
             icon = {
                 str = ' ',
-                hl = {
-                    fg = colors.cyan
-                }
+                hl = function()
+                    return {
+                        fg = vi_mode_colors[vi_mode_text[vim.fn.mode()]]
+                    }
+                end,
             },
-            -- icon = 'git:',
             left_sep = ' ',
-            -- hl = {
-            --     fg = colors.red,
-            -- },
         },
         add = {
             provider = 'git_diff_added',
@@ -256,7 +254,6 @@ require 'feline'.setup {
             {
                 comps.vi_mode.left,
                 comps.file.info,
-                -- comps.git.branch,
                 comps.diagnostic.err,
                 comps.diagnostic.warn,
                 comps.diagnostic.hint,

@@ -19,24 +19,24 @@ require 'telescope'.setup {
             previewer = false
         }
     },
-    extensions = {
-        tele_tabby = {
-            use_highlighter = true
-        }
-    }
+    -- extensions = {
+    --     tele_tabby = {
+    --         use_highlighter = true
+    --     }
+    -- }
 }
 
-function M.tabs()
-    local themes = require 'telescope.themes'
-    local opts = themes.get_dropdown {
-        winblend = 10,
-        border = true,
-        previewer = false,
-        shorten_path = false
-        -- heigth=20,
-        -- width= 120
-    }
-    require 'telescope'.extensions.tele_tabby.list(opts)
-end
+-- function M.tabs()
+--     local themes = require 'telescope.themes'
+--     local opts = themes.get_dropdown {
+--         winblend = 10,
+--         border = true,
+--         previewer = false,
+--         shorten_path = false
+--         -- heigth=20,
+--         -- width= 120
+--     }
+--     require 'telescope'.extensions.tele_tabby.list(opts)
+-- end
 
 return M

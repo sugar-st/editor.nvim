@@ -18,7 +18,7 @@ local telescope_builtin = require 'telescope.builtin'
 map('n', ',f', telescope_builtin.find_files)
 map('n', ',g', telescope_builtin.live_grep)
 map('n', ',b', telescope_builtin.buffers)
-map('n', ',t', require 'plugins.telescope'.tabs)
+-- map('n', ',t', require 'plugins.telescope'.tabs)
 map('n', ',d', telescope_builtin.diagnostics)
 map('n', ',s', telescope_builtin.lsp_workspace_symbols)
 

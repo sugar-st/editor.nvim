@@ -13,6 +13,17 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = '', texthl = '', numhl = '' })
 end
 
+vim.diagnostic.config({
+    virtual_text = {
+        -- source = "always",  -- Or "if_many"
+        prefix = '●', -- Could be '■', '▎', 'x'
+    },
+    severity_sort = true,
+    float = {
+        source = "always", -- Or "if_many"
+    },
+})
+
 -- lua
 local luadev = require 'lua-dev'.setup {
     lspconfig = {
