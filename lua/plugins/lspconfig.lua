@@ -49,3 +49,9 @@ lspconfig.rust_analyzer.setup {
         common_attach_func(client)
     end
 }
+
+-- c
+lspconfig.clangd.setup {}
+
+-- json
+lspconfig.jsonls.setup {}

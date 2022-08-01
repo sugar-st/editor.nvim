@@ -29,6 +29,7 @@ local kind_icons = {
 }
 
 cmp.setup({
+    preselect = cmp.PreselectMode.None,
     snippet = {
         expand = function(args)
             vim.fn['UltiSnips#Anon'](args.body)
@@ -39,39 +40,34 @@ cmp.setup({
             col_offset   = -3,
             side_padding = 0,
         },
+        documentation = {}
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>']     = cmp.mapping.scroll_docs(-4),
         ['<C-f>']     = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-c>']     = cmp.mapping.abort(),
-        ['<CR>']      = cmp.mapping.confirm({
-            select = true
-        }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>']      = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources(
         { { name = 'nvim_lsp' } },
         { { name = 'nvim_lsp_signature_help' } },
         { { name = 'ultisnips' } },
         { { name = 'buffer' } }
-
     ),
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-            -- Kind icons
             vim_item.kind = string.format(' %s ', kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
-            -- Source
             vim_item.menu = ({
-                buffer    = '[Buffer]',
+                buffer    = '[Buff]',
                 nvim_lsp  = '[LSP]',
-                ultisnips = '[Snips]',
+                ultisnips = '[Snip]',
             })[entry.source.name]
             return vim_item
         end
     }
 })
-
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
