@@ -1,0 +1,97 @@
+# statements
+snippet if "if ... then (if)" bA
+if  ${1:true} {
+	${2}
+}
+${0}
+endsnippet
+
+snippet fori "for" bA
+for i := ${1:0}; i < $2; ${3:i++} \{
+	$4
+\}
+$0
+endsnippet
+
+snippet for "for" b
+for ${1:true} \{
+	$2
+\}
+$0
+endsnippet
+
+snippet range "for range" bA
+for $1 := range $2 \{
+	$3
+\}
+$0
+endsnippet
+
+snippet : ":=" iA
+ := 
+endsnippet
+
+# types
+snippet lii "[]int" wA
+[]int
+endsnippet
+
+snippet li8 "[]int8" wA
+[]int8
+endsnippet
+
+snippet li3 "[]int32" wA
+[]int32
+endsnippet
+
+snippet li6 "[]int64" wA
+[]int64
+endsnippet
+
+snippet ii "int" wA
+int
+endsnippet
+
+snippet i8 "int8" wA
+int8
+endsnippet
+
+snippet i3 "int32" wA
+int32
+endsnippet
+
+snippet i6 "int64" wA
+int64
+endsnippet
+
+snippet luu "[]uint" wA
+[]uint
+endsnippet
+
+snippet lu8 "[]uint8" wA
+[]uint8
+endsnippet
+
+snippet lu3 "[]uint32" wA
+[]uint32
+endsnippet
+
+snippet lu6 "[]uint64" wA
+[]uint64
+endsnippet
+
+snippet uu "uint" wA
+uint
+endsnippet
+
+snippet u8 "uint8" wA
+uint8
+endsnippet
+
+snippet u3 "uint32" wA
+uint32
+endsnippet
+
+snippet u6 "uint64" wA
+uint64
+endsnippet
