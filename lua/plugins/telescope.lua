@@ -1,6 +1,5 @@
 M = {}
 
-require 'telescope'.load_extension('tele_tabby')
 require 'telescope'.setup {
     defaults = {
         prompt_prefix = ' 🔍 '

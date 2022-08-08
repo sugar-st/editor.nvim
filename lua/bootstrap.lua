@@ -22,7 +22,6 @@ require 'packer'.startup(function()
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use 'TC72/telescope-tele-tabby.nvim'
     -- git
     -- use {
     --     'tanvirtin/vgit.nvim',
