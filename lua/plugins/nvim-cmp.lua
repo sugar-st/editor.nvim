@@ -28,10 +28,11 @@ local kind_icons = {
     TypeParameter = ''
 }
 
+
 vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 vim.g.UltiSnipsJumpForwardTrigger = '<Tab>'
 vim.g.UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
+vim.g.UltiSnipsListSnippets = '<C-x><C-s>'
 vim.g.UltiSnipsRemoveSelectModeMappings = 0
 
 vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
@@ -40,6 +41,11 @@ local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+local map = require 'tools'.map
+
+map('v', '<tab>', function()
+    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_expand)"), 'm', true)
+end)
 
 cmp.setup({
     preselect = cmp.PreselectMode.None,
