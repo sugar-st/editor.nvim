@@ -40,7 +40,11 @@ lspconfig.gopls.setup {
         common_attach_func(client)
     end
 }
-lspconfig.golangci_lint_ls.setup {}
+lspconfig.golangci_lint_ls.setup {
+    on_attach = function(client)
+        common_attach_func(client)
+    end
+}
 
 -- rust
 require 'rust-tools'.setup {}
@@ -51,7 +55,15 @@ lspconfig.rust_analyzer.setup {
 }
 
 -- c
-lspconfig.clangd.setup {}
+lspconfig.clangd.setup {
+    on_attach = function(client)
+        common_attach_func(client)
+    end
+}
 
 -- json
-lspconfig.jsonls.setup {}
+lspconfig.jsonls.setup {
+    on_attach = function(client)
+        common_attach_func(client)
+    end
+}

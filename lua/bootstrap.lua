@@ -8,9 +8,10 @@ require 'packer'.startup(function()
     use 'lewis6991/impatient.nvim'
     use 'wbthomason/packer.nvim'
     use 'feline-nvim/feline.nvim'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
-    use 'folke/lua-dev.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -43,6 +44,8 @@ require 'packer'.startup(function()
     use 'windwp/nvim-autopairs'
     -- rust
     use 'simrat39/rust-tools.nvim'
+    -- lua
+    use 'folke/lua-dev.nvim'
     -- theme
     -- use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
