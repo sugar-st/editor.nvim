@@ -1,8 +1,39 @@
 M = {}
 
-require 'telescope'.setup {
+local telescope = require 'telescope'
+
+local TelescopePrompt = {
+    -- TelescopePromptNormal = {
+    --     bg = '#2d3149',
+    -- },
+    -- TelescopePromptBorder = {
+    --     bg = '#2d3149',
+    -- },
+    -- TelescopePromptTitle = {
+    --     fg = '#2d3149',
+    --     bg = '#2d3149',
+    -- },
+    -- TelescopePreviewTitle = {
+    --     fg = '#1F2335',
+    --     bg = '#1F2335',
+    -- },
+    -- TelescopeResultsTitle = {
+    --     fg = '#1F2335',
+    --     bg = '#1F2335',
+    -- },
+}
+for hl, col in pairs(TelescopePrompt) do
+    vim.api.nvim_set_hl(0, hl, col)
+end
+
+telescope.setup {
     defaults = {
-        prompt_prefix = ' 🔍 '
+        prompt_prefix   = ' ﲵ  ',
+        selection_caret = '  ',
+        prompt_title    = '',
+        -- border          = false,
+        results_title   = '',
+        preview_title   = '',
     },
     pickers = {
         fd = {
@@ -18,27 +49,31 @@ require 'telescope'.setup {
             previewer = false
         }
     },
-    -- extensions = {
-    --     tele_tabby = {
-    --         use_highlighter = true
-    --     }
-    -- }
+    extensions = {
+        ['ui-select'] = {
+            require("telescope.themes").get_dropdown {
+                -- even more opts
+            }
+
+            -- pseudo code / specification for writing custom displays, like the one
+            -- for "codeactions"
+            -- specific_opts = {
+            --   [kind] = {
+            --     make_indexed = function(items) -> indexed_items, width,
+            --     make_displayer = function(widths) -> displayer
+            --     make_display = function(displayer) -> function(e)
+            --     make_ordinal = function(e) -> string
+            --   },
+            --   -- for example to disable the custom builtin "codeactions" display
+            --      do the following
+            --   codeactions = false,
+            -- }
+        }
+    }
 }
 
--- function M.tabs()
---     local themes = require 'telescope.themes'
---     local opts = themes.get_dropdown {
---         winblend = 10,
---         border = true,
---         previewer = false,
---         shorten_path = false
---         -- heigth=20,
---         -- width= 120
---     }
---     require 'telescope'.extensions.tele_tabby.list(opts)
--- end
+telescope.load_extension("ui-select")
 
-return M
 
 -- local actions = require "telescope.actions"
 -- local action_state = require "telescope.actions.state"
@@ -92,3 +127,9 @@ return M
 --     }
 -- }
 -- return M
+
+require 'icon-picker'.setup {
+    disable_legacy_commands = true
+}
+
+return M

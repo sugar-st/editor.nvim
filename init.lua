@@ -15,91 +15,61 @@ vim.opt.cursorline = true
 
 local map = require 'tools'.map
 local telescope_builtin = require 'telescope.builtin'
+map('n', ',,', [[<Cmd>:Telescope<CR>]])
+map('n', ',p', [[<Cmd>:SessionManager load_session<CR>]])
 map('n', ',f', telescope_builtin.find_files)
-map('n', ',g', telescope_builtin.live_grep)
+map('n', ',F', telescope_builtin.live_grep)
 map('n', ',b', telescope_builtin.buffers)
--- map('n', ',t', require 'plugins.telescope'.tabs)
 map('n', ',d', telescope_builtin.diagnostics)
 map('n', ',s', telescope_builtin.lsp_workspace_symbols)
 
 -- lsp
-map('n', '<space>d', telescope_builtin.lsp_definitions)
-map('n', '<space>t', telescope_builtin.lsp_type_definitions)
-map('n', '<space>r', telescope_builtin.lsp_references)
-map('n', '<space>i', telescope_builtin.lsp_implementations)
-map('n', '<space>s', telescope_builtin.lsp_document_symbols)
-map('n', '<space>rn', vim.lsp.buf.rename)
-map('n', '<space>c', vim.lsp.buf.code_action)
-map('n', '<space>h', vim.lsp.buf.hover)
+map('n', '<Space>d', telescope_builtin.lsp_definitions)
+map('n', '<Space>t', telescope_builtin.lsp_type_definitions)
+map('n', '<Space>r', telescope_builtin.lsp_references)
+map('n', '<Space>i', telescope_builtin.lsp_implementations)
+map('n', '<Space>s', telescope_builtin.lsp_document_symbols)
+map('n', '<Space>rn', vim.lsp.buf.rename)
+map('n', '<Space>c', vim.lsp.buf.code_action)
+map('n', '<Space>h', vim.lsp.buf.hover)
 
 -- repo
-map('n', 'gj', [[<cmd>:Gitsigns next_hunk<cr>]])
-map('n', 'gk', [[<cmd>:Gitsigns prev_hunk<cr>]])
-map('n', 'gp', [[<cmd>:Gitsigns diffthis<cr>]])
+map('n', ',g', [[<Cmd>:Gitsigns<CR>]])
+map('n', 'gj', [[<Cmd>:Gitsigns next_hunk<CR>]])
+map('n', 'gk', [[<Cmd>:Gitsigns prev_hunk<CR>]])
+map('n', 'gp', [[<Cmd>:Gitsigns diffthis<CR>]])
 map('n', 'gb', telescope_builtin.git_branches)
 
 -- window, tab and buffer management
 local splits = require 'smart-splits'
 if vim.fn.has('mac') then
-    map('n', '˙', splits.resize_left)
-    map('n', '∆', splits.resize_down)
-    map('n', '˚', splits.resize_up)
-    map('n', '¬', splits.resize_right)
-    map('n', 'ß', [[<cmd>:sp<cr>]])
-    map('n', '√', [[<cmd>:vsp<cr>]])
+    map({ 'n', 'i' }, '˙', splits.resize_left)
+    map({ 'n', 'i' }, '∆', splits.resize_down)
+    map({ 'n', 'i' }, '˚', splits.resize_up)
+    map({ 'n', 'i' }, '¬', splits.resize_right)
+    map({ 'n', 'i' }, 'ß', [[<Cmd>:sp<CR>]])
+    map({ 'n', 'i' }, '√', [[<Cmd>:vsp<CR>]])
 end
 if vim.fn.has('linux') then
-    map('n', '<A-h>', splits.resize_left)
-    map('n', '<A-j>', splits.resize_down)
-    map('n', '<A-k>', splits.resize_up)
-    map('n', '<A-l>', splits.resize_right)
-    map('n', '<A-s>', [[<cmd>:sp<cr>]])
-    map('n', '<A-v>', [[<cmd>:vsp<cr>]])
+    map({ 'n', 'i' }, '<A-h>', splits.resize_left)
+    map({ 'n', 'i' }, '<A-j>', splits.resize_down)
+    map({ 'n', 'i' }, '<A-k>', splits.resize_up)
+    map({ 'n', 'i' }, '<A-l>', splits.resize_right)
+    map({ 'n', 'i' }, '<A-s>', [[<Cmd>:sp<CR>]])
+    map({ 'n', 'i' }, '<A-v>', [[<Cmd>:vsp<CR>]])
 end
-map('n', '<C-h>', splits.move_cursor_left)
-map('n', '<C-j>', splits.move_cursor_down)
-map('n', '<C-k>', splits.move_cursor_up)
-map('n', '<C-l>', splits.move_cursor_right)
+map({ 'n', 'i' }, '<C-h>', splits.move_cursor_left)
+map({ 'n', 'i' }, '<C-j>', splits.move_cursor_down)
+map({ 'n', 'i' }, '<C-k>', splits.move_cursor_up)
+map({ 'n', 'i' }, '<C-l>', splits.move_cursor_right)
 
-map('n', '<C-t>', [[<cmd>:tabnew<cr>]]) -- new tab
-map('n', 'tn', [[<cmd>:tabnext<cr>]]) -- prev tab
-map('n', 'tp', [[<cmd>:tabprevious<cr>]]) -- nex tab
+map('n', '<C-t>', [[<Cmd>:tabnew<CR>]]) -- new tab
+map('n', 'tn', [[<Cmd>:tabnext<CR>]]) -- prev tab
+map('n', 'tp', [[<Cmd>:tabprevious<CR>]]) -- nex tab
 -- copy
 vim.opt.clipboard = 'unnamedplus'
 
 -- others
-map('n', '<C-p>', [[<cmd>:PackerSync<cr>]])
+map('n', '<C-p>', [[<Cmd>:PackerSync<CR>]])
 
 require 'plugins'
-
-if vim.g.neovide then
-    vim.g.gui_font_default_size = 12
-    vim.g.gui_font_size = vim.g.gui_font_default_size
-    -- vim.g.gui_font_face = "JetBrains Mono NL"
-    vim.g.gui_font_face = "Iosevka Nerd Font"
-    -- vim.g.gui_font_face = "VictorMono Nerd Font"
-
-    RefreshGuiFont = function()
-        vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
-    end
-
-    ResizeGuiFont = function(delta)
-        vim.g.gui_font_size = vim.g.gui_font_size + delta
-        RefreshGuiFont()
-    end
-
-    ResetGuiFont = function()
-        vim.g.gui_font_size = vim.g.gui_font_default_size
-        RefreshGuiFont()
-    end
-
-    -- Call function on startup to set default value
-    ResetGuiFont()
-
-    -- Keymaps
-
-    local opts = { noremap = true, silent = true }
-
-    vim.keymap.set({ 'n', 'i' }, "<D-=>", function() ResizeGuiFont(1) end, opts)
-    vim.keymap.set({ 'n', 'i' }, "<D-->", function() ResizeGuiFont(-1) end, opts)
-end

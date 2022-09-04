@@ -12,16 +12,19 @@ require 'packer'.startup(function()
     use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'p00f/nvim-ts-rainbow'
     use 'lukas-reineke/lsp-format.nvim'
     -- telescope
+    use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use 'nvim-telescope/telescope-ui-select.nvim'
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        'ziontee113/icon-picker.nvim',
+        config = function()
+            require('icon-picker').setup({
+                disable_legacy_commands = true
+            })
+        end,
     }
     -- git
     -- use {
@@ -54,8 +57,6 @@ require 'packer'.startup(function()
     use 'nvim-neo-tree/neo-tree.nvim'
     use 'MunifTanjim/nui.nvim'
     use 'j-hui/fidget.nvim'
-    use {
-        'goolord/alpha-nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
+    use { 'goolord/alpha-nvim', requires = 'kyazdani42/nvim-web-devicons' }
+    use 'Shatur/neovim-session-manager'
 end)
